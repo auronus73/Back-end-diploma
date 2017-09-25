@@ -21,7 +21,7 @@ namespace WebApplication2
         {
             this.Rewards = new HashSet<Reward>();
         }
-    [Key]
+   
 
         public int event_id { get; set; }
         public string title { get; set; }
