@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+</head>
+<body>
+    <div>
+        <h3>Список мероприятий  </h3>
+        <table>
+            <tr>
+                <td><p>Название</p></td>
+                <td><p>Страна</p></td>
+                <td><p>Город</p></td>
+                <td><p>Улица</p></td>
+                <td><p>№</p></td>
+                <td><p>Уровень</p></td>
+                <td><p>Дата</p></td>
+                <td><p>Источник</p></td>
+                <td></td>
+            </tr>
+            @foreach (var b in ViewBag.Events)
+            {
+                <tr>
+                    <td><p>@b.title</p></td>
+                    <td><p>@b.country</p></td>
+                    <td><p>@b.city</p></td>
+                    <td><p>@b.street</p></td>
+                    <td><p>@b.number_of_house</p></td>
+                    <td><p>@b.level</p></td>
+                    <td><p>@b.date</p></td>
+                    <td><p>@b.source</p></td>
+                    <td><p><a href="/Home/Buy/@b.id">тык</a></p></td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
