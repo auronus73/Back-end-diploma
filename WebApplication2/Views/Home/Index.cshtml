@@ -7,38 +7,63 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    
     <title>Test</title>
+    @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div>
-        <h3>Список мероприятий  </h3>
+        @*<h3>Список мероприятий  </h3>
         <table>
             <tr>
-                <td><p>Название</p></td>
-                <td><p>Страна</p></td>
-                <td><p>Город</p></td>
-                <td><p>Улица</p></td>
-                <td><p>№</p></td>
-                <td><p>Уровень</p></td>
-                <td><p>Дата</p></td>
-                <td><p>Источник</p></td>
-                <td></td>
+                <th>Название</th>
+                <th>Страна</th>
+                <th>Город</th>
+                <th>Улица</th>
+                <th>Номер дома</th>
+                <th>Уровень</th>
+                <th>Дата</th>
+                <th>Источник</th>
             </tr>
-            @foreach (var b in ViewBag.Events)
+
+            @foreach (Event events in Model)
             {
                 <tr>
-                    <td><p>@b.title</p></td>
-                    <td><p>@b.country</p></td>
-                    <td><p>@b.city</p></td>
-                    <td><p>@b.street</p></td>
-                    <td><p>@b.number_of_house</p></td>
-                    <td><p>@b.level</p></td>
-                    <td><p>@b.date</p></td>
-                    <td><p>@b.source</p></td>
-                    <td><p><a href="/Home/Buy/@b.id">тык</a></p></td>
+                    <td>
+                        @Html.DisplayFor(modelEvent => events.title)
+                    </td>
+                    <td>@Html.DisplayFor(modelEvent => events.country)</td>
+                    <td>@Html.DisplayFor(modelEvent => events.city)</td>
+                    <td>@Html.DisplayFor(modelEvent => events.street)</td>
+                    <td>@Html.DisplayFor(modelEvent => events.number_of_house)</td>
+                    <td>@Html.DisplayFor(modelEvent => events.level)</td>
+                    <td>@Html.DisplayFor(modelEvent => events.date)</td>
+                    <td>@Html.DisplayFor(modelEvent => events.source)</td>
+
                 </tr>
             }
-        </table>
-    </div>
+        </table>*@
+    <h3>Список Студентов  </h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Группа</th>
+            <th></th>
+        </tr>
+
+        @foreach (Student student in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelStudent => student.surname)</td>
+                <td>@Html.DisplayFor(modelStudent => student.name)</td>
+                <td>@Html.DisplayFor(modelStudent => student.patronymic)</td>
+                <td>@Html.DisplayFor(modelStudent => student.group)</td>
+                <td><p><a href="/Home/EditStudent/@student.student_id">Изменить</a></p></td>
+            </tr>
+        }
+    </table>
+
+
 </body>
 </html>
