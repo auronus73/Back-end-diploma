@@ -27,11 +27,33 @@ namespace WebApplication2.Controllers
             return View(qwe);
         }
 
-        public ActionResult EditStudent(int id)
+        [HttpGet]
+        public ActionResult EditStudent(int? id)
         {
-            ViewBag.student_id = id;
-            return View();
+            var asd = new diplomaEntities();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Student student = asd.Students.Find(id);
+            if (student != null)
+            {
+                return View(student);
+            }
+            return HttpNotFound();
         }
+
+        [HttpPost]
+        public ActionResult EditStudent(Student student)
+        {
+            var asd = new diplomaEntities();
+            asd.Entry(student).State = EntityState.Modified;
+            
+            // сохраняем в бд все изменения
+            asd.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
