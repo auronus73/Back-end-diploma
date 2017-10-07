@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -7,63 +7,35 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    
     <title>Test</title>
     @Styles.Render("~/Content/css")
 </head>
 <body>
-        @*<h3>Список мероприятий  </h3>
-        <table>
+    <div class="container">
+        
+        <h3>Список Студентов  </h3>
+        <table class="table table-striped">
             <tr>
-                <th>Название</th>
-                <th>Страна</th>
-                <th>Город</th>
-                <th>Улица</th>
-                <th>Номер дома</th>
-                <th>Уровень</th>
-                <th>Дата</th>
-                <th>Источник</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Группа</th>
+                <th></th>
             </tr>
 
-            @foreach (Event events in Model)
+            @foreach (Student student in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelEvent => events.title)
-                    </td>
-                    <td>@Html.DisplayFor(modelEvent => events.country)</td>
-                    <td>@Html.DisplayFor(modelEvent => events.city)</td>
-                    <td>@Html.DisplayFor(modelEvent => events.street)</td>
-                    <td>@Html.DisplayFor(modelEvent => events.number_of_house)</td>
-                    <td>@Html.DisplayFor(modelEvent => events.level)</td>
-                    <td>@Html.DisplayFor(modelEvent => events.date)</td>
-                    <td>@Html.DisplayFor(modelEvent => events.source)</td>
-
+                    <td>@Html.DisplayFor(modelStudent => student.surname)</td>
+                    <td>@Html.DisplayFor(modelStudent => student.name)</td>
+                    <td>@Html.DisplayFor(modelStudent => student.patronymic)</td>
+                    <td>@Html.DisplayFor(modelStudent => student.group)</td>
+                    <td><p><a style="background: transparent", href="/Home/EditStudent/@student.student_id">Изменить</a></p></td>
+                    @*добавить удаление в еще один столбец/
+                        добавление выше таблицы*@
                 </tr>
             }
-        </table>*@
-    <h3>Список Студентов  </h3>
-    <table class="table table-striped">
-        <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Отчество</th>
-            <th>Группа</th>
-            <th></th>
-        </tr>
-
-        @foreach (Student student in Model)
-            {
-            <tr>
-                <td>@Html.DisplayFor(modelStudent => student.surname)</td>
-                <td>@Html.DisplayFor(modelStudent => student.name)</td>
-                <td>@Html.DisplayFor(modelStudent => student.patronymic)</td>
-                <td>@Html.DisplayFor(modelStudent => student.group)</td>
-                <td><p><a href="/Home/EditStudent/@student.student_id">Изменить</a></p></td>
-            </tr>
-        }
-    </table>
-
-
+        </table>
+    </div>
 </body>
 </html>

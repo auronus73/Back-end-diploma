@@ -40,6 +40,10 @@
           box-sizing: border-box;
 }
 
+li {
+    float: left; /*Размещаем список горизонтально для реализации меню*/
+    margin-right: 5px; /*Добавляем отступ у пунктов меню*/
+}
 article,
 aside,
 details,

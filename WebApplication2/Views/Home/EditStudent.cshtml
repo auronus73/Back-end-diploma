@@ -1,35 +1,29 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model WebApplication2.Student
 <h2>Студент № @Model.student_id</h2>
 
 @using (Html.BeginForm("EditStudent", "Home", FormMethod.Post))
 {
-    <fieldset>
-        @Html.HiddenFor(m => m.student_id)
-        <p>
-            @Html.LabelFor(m => m.surname, "Фамилия студента")
-            <br />
-            @Html.EditorFor(m => m.surname)
-        </p>
-        <p>
-            @Html.LabelFor(m => m.name, "Имя студента")
-            <br />
-            @Html.EditorFor(m => m.name)
-
-        </p>
-        <p>
-            @Html.LabelFor(m => m.patronymic, "Отчество")
-            <br />
-            @Html.EditorFor(m => m.patronymic)
-        </p>
-        <p>
-            @Html.LabelFor(m => m.group, "Группа")
-            <br />
-            @Html.EditorFor(m => m.group)
-        </p>
-        <p><input type="submit" value="Отправить" /></p>
-    </fieldset>
+    @Html.HiddenFor(m => m.student_id)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.surname, "Фамилия студента")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.surname)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.name, "Имя студента")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.name)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.patronymic, "Отчество")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.patronymic)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.group, "Группа")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.group)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <input class="btn btn-primary" type="submit" value="Отправить" />
+            </div>
+        </div>
+    </div>
 }
