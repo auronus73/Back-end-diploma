@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebApplication2.Event>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Events</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <h3>Список мероприятий</h3>
+    <a style="text-align:right" , href="CreateEvent/">Добавить мероприятие</a>
+    <table class="table table-striped">
+        <tr>
+            <th>Наименование</th>
+            <th>Страна</th>
+            <th>Город</th>
+            <th>Улица</th>
+            <th>№ дома</th>
+            <th>Уровень</th>
+            <th>Дата</th>
+            <th>Ценность</th>
+            <th>Источник</th>
+            <th>Действия</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.number_of_house)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.source)
+                </td>
+                <td>
+                    <p>
+                        <a style="margin-bottom: 0px; background: transparent" , href="EditEvent/@item.event_id">Изменить</a>
+                        <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="DeleteEvent/@item.event_id"></a>
+                    </p>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

@@ -18,6 +18,20 @@ namespace WebApplication2.Controllers
             return View(qwe);
         }
 
+        public ActionResult Students()
+        {
+                var asd = new diplomaEntities();
+            var qwe = asd.Students;
+            return View(qwe);
+        }
+
+        public ActionResult Events()
+        {
+            var asd = new diplomaEntities();
+            var qwe = asd.Events;
+            return View(qwe);
+        }
+
         [HttpGet]
         public ActionResult EditStudent(int id)
         {

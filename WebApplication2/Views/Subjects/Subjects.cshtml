@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication2.Subject>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Subjects</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="container">
+        <h3>Список предметов</h3>
+        <a style="text-align:right" , href="CreateSsubject/">Добавить предмет</a> 
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Наименование
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                <p>
+                    <a style="margin-bottom: 0px; background: transparent" , href="/EditSubject/@item.subject_id">Изменить</a>
+                    <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="/DeleteSubject/@item.subject_id"></a>
+                </p>
+            </td>
+        </tr>
+    }
+    
+    </table>
+        </div>
+</body>
+</html>

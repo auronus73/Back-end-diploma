@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebApplication2.Reward>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rewards</title>
+    @Styles.Render("~/Content/css")
+
+
+</head>
+<body>
+    <div class="container">
+        <h3>Список студентов</h3>
+        <a style="text-align:right" , href="CreateStudent/">Добавить студента</a>
+        <table class="table">
+            <tr>
+                <th>Наименование
+                </th>
+                <th>Уровень
+                </th>
+                <th>Ценность
+                </th>
+                <th>Наименование мероприятия
+                </th>
+                <th>ID ведомости
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Event.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.List.list_id)
+                    </td>
+                    <td>
+                        <p>
+                            <a style="margin-bottom: 0px; background: transparent" , href="EditReward/@item.reward_id">Изменить</a>
+                            <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="DeleteReward/@item.reward_id"></a>
+                        </p>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</body>
+</html>

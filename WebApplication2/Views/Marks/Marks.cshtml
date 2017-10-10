@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication2.Mark>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Marks</title>
+    @Styles.Render("~/Content/css")
+
+
+</head>
+<body>
+    <div class="container">
+        <h3>Список оценок</h3>
+        <a style="text-align:right" , href="CreateStudent/">Добавить оценку</a>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ball)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.List.list_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject.title)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ball)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.List.list_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.title)
+                    </td>
+                    <td>
+                        <p>
+                            <a style="margin-bottom: 0px; background: transparent" , href="EditMark/@item.mark_id">Изменить</a>
+                            <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="DeleteMark/@item.mark_id"></a>
+                        </p>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</body>
+</html>
