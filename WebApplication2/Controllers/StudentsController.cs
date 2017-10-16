@@ -11,7 +11,7 @@ namespace WebApplication2.Controllers
     {
         public int id = 0;
         // GET: Students
-        public ActionResult Students()
+        public ActionResult List()
         {
             var asd = new diplomaEntities();
             var qwe = asd.Students;
@@ -20,61 +20,40 @@ namespace WebApplication2.Controllers
             return View(qwe);
         }
 
-
-        // GET: Students/Create
-        [HttpGet]
-        public ActionResult CreateStudent()
-        {
-                return View(id);
-        }
-
-        // POST: Students/Create
-        [HttpPost]
-        public ActionResult CreateStudent(Student student)
-        {
-            var asd = new diplomaEntities();
-            try
-            {
-                // TODO: Add insert logic here
-               
-                asd.Students.Add(student);
-                // сохраняем в бд все изменения
-                asd.SaveChanges();
-                return RedirectToAction("Students/Students");
-            }
-            catch
-            {
-                return View(asd.Students);
-            }
-        }
-
         // GET: Students/Edit/5
         [HttpGet]
-        public ActionResult EditStudent(int id)
+        public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
-            Student student = asd.Students.Find(id);
-            if (student != null)
-            {
-                return View(student);
-            }
-            return HttpNotFound();
+            Student student = asd.Students.Find(id) ?? new Student();
+            return View(student);
         }
 
         // POST: Students/Edit/5
         [HttpPost]
-        public ActionResult EditStudent(Student student)
+        public ActionResult Edit(Student student)
         {
             try
             {
                 var asd = new diplomaEntities();
-                asd.Entry(student).State = EntityState.Modified;
+
+                if (asd.Students.Any(m=> m.student_id == student.student_id) )
+                {
+                    asd.Entry(student).State = EntityState.Modified;
+                }
+                else
+                {
+                    asd.Entry(student).State = EntityState.Added;
+                }
+                
+
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("Students");
+                return RedirectToAction("List");
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -96,7 +75,7 @@ namespace WebApplication2.Controllers
                 asd.Entry(student).State = EntityState.Modified;
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("Students/Students");
+                return RedirectToAction("List");
             }
             catch
             {

@@ -11,9 +11,7 @@ namespace WebApplication2
 {
     using System;
     using System.Collections.Generic;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-
+    
     public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +19,7 @@ namespace WebApplication2
         {
             this.Rewards = new HashSet<Reward>();
         }
-   
-
+    
         public int event_id { get; set; }
         public string title { get; set; }
         public string country { get; set; }

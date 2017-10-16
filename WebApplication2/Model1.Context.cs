@@ -26,9 +26,9 @@ namespace WebApplication2
         }
     
         public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<List> Lists { get; set; }
         public virtual DbSet<Mark> Marks { get; set; }
         public virtual DbSet<Reward> Rewards { get; set; }
+        public virtual DbSet<Statement> Statements { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<User> Users { get; set; }

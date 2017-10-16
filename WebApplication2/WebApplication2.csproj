@@ -205,7 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListsController.cs" />
+    <Compile Include="Controllers\StatementsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarksController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
@@ -216,9 +216,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="List.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Mark.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -246,6 +243,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Statement.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Student.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -332,24 +332,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Students\Students.cshtml" />
-    <Content Include="Views\Students\EditStudent.cshtml" />
-    <Content Include="Views\Events\CreateEvent.cshtml" />
-    <Content Include="Views\Students\CreateStudent.cshtml" />
-    <Content Include="Views\Events\Events.cshtml" />
-    <Content Include="Views\Events\EditEvent.cshtml" />
-    <Content Include="Views\Subjects\Subjects.cshtml" />
-    <Content Include="Views\Subjects\CreateSubject.cshtml" />
-    <Content Include="Views\Subjects\EditSubject.cshtml" />
-    <Content Include="Views\Rewards\Rewards.cshtml" />
-    <Content Include="Views\Rewards\CreateReward.cshtml" />
-    <Content Include="Views\Rewards\EditReward.cshtml" />
-    <Content Include="Views\Marks\Marks.cshtml" />
-    <Content Include="Views\Marks\CreateMark.cshtml" />
-    <Content Include="Views\Marks\EditMark.cshtml" />
-    <Content Include="Views\Lists\Lists.cshtml" />
-    <Content Include="Views\Lists\CreateList.cshtml" />
-    <Content Include="Views\Lists\EditList.cshtml" />
+    <Content Include="Views\Students\List.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Subjects\List.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Events\List.cshtml" />
+    <Content Include="Views\Marks\List.cshtml" />
+    <Content Include="Views\Statements\List.cshtml" />
+    <Content Include="Views\Rewards\List.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,22 +12,22 @@ namespace WebApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class List
+    public partial class Statement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public List()
+        public Statement()
         {
             this.Marks = new HashSet<Mark>();
             this.Rewards = new HashSet<Reward>();
         }
     
-        public int list_id { get; set; }
+        public int statement_id { get; set; }
         public int student_id { get; set; }
     
-        public virtual Student Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mark> Marks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reward> Rewards { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

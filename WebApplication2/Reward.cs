@@ -22,6 +22,6 @@ namespace WebApplication2
         public Nullable<int> list_id { get; set; }
     
         public virtual Event Event { get; set; }
-        public virtual List List { get; set; }
+        public virtual Statement Statement { get; set; }
     }
 }

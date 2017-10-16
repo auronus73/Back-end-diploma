@@ -19,7 +19,7 @@ namespace WebApplication2
         public int subject_id { get; set; }
         public int list_id { get; set; }
     
-        public virtual List List { get; set; }
+        public virtual Statement Statement { get; set; }
         public virtual Subject Subject { get; set; }
     }
 }

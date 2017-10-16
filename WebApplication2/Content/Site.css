@@ -1,4 +1,4 @@
-﻿body {
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -27,3 +27,81 @@ li {
     float: left; /*Размещаем список горизонтально для реализации меню*/
     margin-right: 5px; /*Добавляем отступ у пунктов меню*/
 }
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 5px;
+}
+
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+            ul.pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+
+li {
+    color: #ffffff;
+    float: left; /*Размещаем список горизонтально для реализации меню*/
+    margin-right: 15px; /*Добавляем отступ у пунктов меню*/
+}
+
+ul {
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем отступы*/
+    padding-left: 0; /*убираем отступы*/
+    margin-top: 25px; /*делаем отступ сверху*/
+    height: 25px; /*задаем высоту*/
+}
+
+    ul:hover {
+    }
+
+li:hover {
+}
+
+li > ul {
+    position: absolute;
+    top: 25px;
+    display: none;
+}
+
+li:hover > ul {
+    display: block;
+    margin-top: 15px;
+    width: 130px; /*Задаем ширину выпадающего меню*/
+}
+
+    li:hover > ul > li {
+        float: none; /*Убираем горизонтальное позиционирование*/
+    }
+
+a {
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+    background: #3c3c3c; /*добавляем фон к пункту меню*/
+    padding: 0px 15px; /*добавляем отступ*/
+    font-family: arial; /*меняем шрифт*/
+    line-height: 50px; /*ровняем меню по вертикали*/
+    display: block;
+    /*добавляем бордюр справа*/
+    -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
+    -o-transition: all 0.3s 0.01s ease;
+    -webkit-transition: all 0.3s 0.01s ease;
+}
+
+    a:hover {
+        background: #3c3c3c; /*добавляем эффект при наведении*/
+    }

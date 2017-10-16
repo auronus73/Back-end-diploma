@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication2.Mark>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+   <h3>Список оценок</h3>
+<a style="text-align:right" , href="Create/">Добавить запись</a>
+<ul class="pagination">
+    @*@foreach()*@
+    <li><a href="?pageNumber=1">1</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li><a href="#">»</a></li>
+</ul>
+<p></p>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Оценка
+        </th>
+        <th>
+            № Ведомости
+        </th>
+        <th>
+            Название предмета
+        </th>
+        <th>Действия</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ball)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statement.statement_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.title)
+            </td>
+            <td>
+                <p>
+                    <a style="margin-bottom: 0px; background: transparent" , href="Edit/@item.mark_id">Изменить</a>
+                    <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="Delete/@item.mark_id"></a>
+                </p>
+            </td>
+        </tr>
+    }
+    </table>
+    </div>

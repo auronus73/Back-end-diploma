@@ -4,70 +4,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Test</title>
-    @Styles.Render("~/Content/css")
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+    @Styles.Render("~/Content/css")
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <style>
-        li {
-            color: #ffffff;
-            float: left; /*Размещаем список горизонтально для реализации меню*/
-            margin-right: 15px; /*Добавляем отступ у пунктов меню*/
-        }
-
-        ul {
-            list-style: none; /*убираем маркеры списка*/
-            margin: 0; /*убираем отступы*/
-            padding-left: 0; /*убираем отступы*/
-            margin-top: 25px; /*делаем отступ сверху*/
-            height: 25px; /*задаем высоту*/
-        }
-
-            ul:hover {
-            }
-
-        li:hover {
-        }
-
-        li > ul {
-            position: absolute;
-            top: 25px;
-            display: none;
-        }
-
-        li:hover > ul {
-            display: block;
-            margin-top: 15px;
-            width: 120px; /*Задаем ширину выпадающего меню*/
-        }
-
-            li:hover > ul > li {
-                float: none; /*Убираем горизонтальное позиционирование*/
-            }
-
-        a {
-            text-decoration: none; /*убираем подчеркивание текста ссылок*/
-            background: #3c3c3c; /*добавляем фон к пункту меню*/
-            padding: 0px 15px; /*добавляем отступ*/
-            font-family: arial; /*меняем шрифт*/
-            line-height: 50px; /*ровняем меню по вертикали*/
-            display: block;
-            /*добавляем бордюр справа*/
-            -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
-            -o-transition: all 0.3s 0.01s ease;
-            -webkit-transition: all 0.3s 0.01s ease;
-        }
-
-            a:hover {
-                background: #3c3c3c; /*добавляем эффект при наведении*/
-            }
-    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -81,22 +27,17 @@
                 @*@Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                        <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                        <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                    </ul>*@
                 <ul class="nav navbar-nav" style="margin-top: 10px;  color: #808080">
                     <li style="color:#ffffff"> <a href="/Home/Index">Главная</a></li>
                     <li>
                         <a href="#">Справочники</a>
                         <ul style="margin-left:0px">
-                            <li><a href="/Students/Students">Студенты</a></li>
-                            <li><a href="/Subjects/Subjects">Предметы</a></li>
-                            <li><a href="/Events/Events">Мероприятия</a></li>
-                            <li><a href="/Rewards/Rewards">Награждения</a></li>
-                            <li><a href="/Lists/Lists">Ведомость</a></li>
-                            <li><a href="/Marks/Marks">Оценки</a></li>
+                            <li><a href="/Students/List">Студенты</a></li>
+                            <li><a href="/Subjects/List">Предметы</a></li>
+                            <li><a href="/Events/List">Мероприятия</a></li>
+                            <li><a href="/Rewards/List">Награждения</a></li>
+                            <li><a href="/Statements/List">Ведомость</a></li>
+                            <li><a href="/Marks/List">Оценки</a></li>
                         </ul>
                     </li>
                     <li> <a href="/Home/Report">Отчеты</a></li>
@@ -106,13 +47,12 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
-    </div>
+    <div class="container">
+    @RenderBody()
+        </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

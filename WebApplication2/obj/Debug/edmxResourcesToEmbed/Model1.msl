@@ -17,14 +17,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Lists">
-      <EntityTypeMapping TypeName="diplomaModel.List">
-        <MappingFragment StoreEntitySet="List">
-          <ScalarProperty Name="list_id" ColumnName="list_id" />
-          <ScalarProperty Name="student_id" ColumnName="student_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Marks">
       <EntityTypeMapping TypeName="diplomaModel.Mark">
         <MappingFragment StoreEntitySet="Mark">
@@ -44,6 +36,14 @@
           <ScalarProperty Name="value" ColumnName="value" />
           <ScalarProperty Name="event_id" ColumnName="event_id" />
           <ScalarProperty Name="list_id" ColumnName="list_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statements">
+      <EntityTypeMapping TypeName="diplomaModel.Statement">
+        <MappingFragment StoreEntitySet="Statement">
+          <ScalarProperty Name="statement_id" ColumnName="statement_id" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -69,14 +69,14 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="diplomaModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="role" ColumnName="role" />
-          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
-          <ScalarProperty Name="surname" ColumnName="surname" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="e_mail" ColumnName="e-mail" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="e_mail" ColumnName="e-mail" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="role" ColumnName="role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

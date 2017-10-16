@@ -10,7 +10,7 @@ namespace WebApplication2.Controllers
     public class RewardsController : Controller
     {
         // GET: Rewards
-        public ActionResult Rewards()
+        public ActionResult List()
         {
             var asd = new diplomaEntities();
             var qwe = asd.Rewards;
@@ -21,34 +21,8 @@ namespace WebApplication2.Controllers
 
         
 
-        // GET: Rewards/Create
-        public ActionResult CreateReward()
-        {
-            return View();
-        }
-
-        // POST: Rewards/Create
-        [HttpPost]
-        public ActionResult CreateReward(Reward reward)
-        {
-            var asd = new diplomaEntities();
-            try
-            {
-                // TODO: Add insert logic here
-
-                asd.Rewards.Add(reward);
-                // сохраняем в бд все изменения
-                asd.SaveChanges();
-                return RedirectToAction("Rewards/Rewards");
-            }
-            catch
-            {
-                return View(asd.Rewards);
-            }
-        }
-
         // GET: Rewards/Edit/5
-        public ActionResult EditReward(int id)
+        public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
             Reward reward = asd.Rewards.Find(id);
@@ -61,7 +35,7 @@ namespace WebApplication2.Controllers
 
         // POST: Rewards/Edit/5
         [HttpPost]
-        public ActionResult EditReward(Reward reward)
+        public ActionResult Edit(Reward reward)
         {
             try
             {
@@ -69,7 +43,7 @@ namespace WebApplication2.Controllers
                 asd.Entry(reward).State = EntityState.Modified;
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("Rewards");
+                return RedirectToAction("List");
             }
             catch
             {

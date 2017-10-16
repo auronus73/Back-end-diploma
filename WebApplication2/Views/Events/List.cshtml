@@ -4,17 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+    <h3>Список студентов</h3>
+    <a style="text-align:right" , href="Create/">Добавить студента</a>
+    <ul class="pagination">
+        @*@foreach()*@
+        <li><a href="?pageNumber=1">1</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+        <li><a href="#">»</a></li>
+    </ul>
+    <p></p>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Events</title>
-    @Styles.Render("~/Content/css")
-</head>
-<body>
-    <h3>Список мероприятий</h3>
-    <a style="text-align:right" , href="CreateEvent/">Добавить мероприятие</a>
     <table class="table table-striped">
         <tr>
             <th>Наименование</th>
@@ -61,13 +64,11 @@
                 </td>
                 <td>
                     <p>
-                        <a style="margin-bottom: 0px; background: transparent" , href="EditEvent/@item.event_id">Изменить</a>
-                        <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="DeleteEvent/@item.event_id"></a>
+                        <a style="margin-bottom: 0px; background: transparent" , href="Edit/@item.event_id">Изменить</a>
+                        <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="Delete/@item.event_id"></a>
                     </p>
                 </td>
             </tr>
         }
 
     </table>
-</body>
-</html>

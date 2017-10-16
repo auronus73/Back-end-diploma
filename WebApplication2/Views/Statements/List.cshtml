@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication2.Statement>
+
+@{
+    Layout = null;
+}
+
+<h3>Список ведомостей</h3>
+<a style="text-align:right" , href="Create/">Добавить запись</a>
+<ul class="pagination">
+    @*@foreach()*@
+    <li><a href="?pageNumber=1">1</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">6</a></li>
+    <li><a href="#">7</a></li>
+    <li><a href="#">»</a></li>
+</ul>
+<p></p>
+
+<table class="table table-striped">
+    <tr>
+        <th> Имя студента
+        </th>
+        <th>Действия</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.name)
+            </td>
+            <td>
+                <p>
+                    <a style="margin-bottom: 0px; background: transparent" , href="Edit/@item.statement_id">Изменить</a>
+                    <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="Delete/@item.statement_id"></a>
+                </p>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -11,39 +11,11 @@ namespace WebApplication2.Controllers
     {
         public int id = 0;
         // GET: Students
-        public ActionResult Subjects()
+        public ActionResult List()
         {
             var asd = new diplomaEntities();
             var qwe = asd.Subjects;
             return View(qwe);
-        }
-
-
-        // GET: Students/Create
-        [HttpGet]
-        public ActionResult CreateSubject()
-        {
-            return View(id);
-        }
-
-        // POST: Students/Create
-        [HttpPost]
-        public ActionResult CreateSubject(Subject item)
-        {
-            var asd = new diplomaEntities();
-            try
-            {
-                // TODO: Add insert logic here
-
-                asd.Subjects.Add(item);
-                // сохраняем в бд все изменения
-                asd.SaveChanges();
-                return RedirectToAction("/Subjects");
-            }
-            catch
-            {
-                return View(asd.Subjects);
-            }
         }
 
         // GET: Students/Edit/5
@@ -69,7 +41,7 @@ namespace WebApplication2.Controllers
                 asd.Entry(subject).State = EntityState.Modified;
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("/Subjects");
+                return RedirectToAction("List");
             }
             catch
             {
@@ -94,7 +66,7 @@ namespace WebApplication2.Controllers
                 asd.Entry(subject).State = EntityState.Modified;
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("/Subjects");
+                return RedirectToAction("List");
             }
             catch
             {

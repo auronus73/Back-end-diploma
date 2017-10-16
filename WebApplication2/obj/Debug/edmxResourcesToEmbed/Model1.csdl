@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="event_id" />
     </Key>
-    <Property Name="event_id" Type="Int32" Nullable="false" />
+    <Property Name="event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -16,58 +16,71 @@
     <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Rewards" Relationship="Self.FK_Reward_Event" FromRole="Event" ToRole="Reward" />
   </EntityType>
-  <EntityType Name="List">
-    <Key>
-      <PropertyRef Name="list_id" />
-    </Key>
-    <Property Name="list_id" Type="Int32" Nullable="false" />
-    <Property Name="student_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Student" Relationship="Self.FK_List_Student" FromRole="List" ToRole="Student" />
-    <NavigationProperty Name="Marks" Relationship="Self.FK_Mark_List" FromRole="List" ToRole="Mark" />
-    <NavigationProperty Name="Rewards" Relationship="Self.FK_Reward_List" FromRole="List" ToRole="Reward" />
-  </EntityType>
   <EntityType Name="Mark">
     <Key>
       <PropertyRef Name="mark_id" />
     </Key>
-    <Property Name="mark_id" Type="Int32" Nullable="false" />
+    <Property Name="mark_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ball" Type="Double" Nullable="false" />
     <Property Name="subject_id" Type="Int32" Nullable="false" />
     <Property Name="list_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="List" Relationship="Self.FK_Mark_List" FromRole="Mark" ToRole="List" />
+    <NavigationProperty Name="Statement" Relationship="Self.FK_Mark_List" FromRole="Mark" ToRole="Statement" />
     <NavigationProperty Name="Subject" Relationship="Self.FK_Mark_Subject" FromRole="Mark" ToRole="Subject" />
   </EntityType>
   <EntityType Name="Reward">
     <Key>
       <PropertyRef Name="reward_id" />
     </Key>
-    <Property Name="reward_id" Type="Int32" Nullable="false" />
+    <Property Name="reward_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="value" Type="Int32" Nullable="false" />
     <Property Name="event_id" Type="Int32" Nullable="false" />
     <Property Name="list_id" Type="Int32" />
     <NavigationProperty Name="Event" Relationship="Self.FK_Reward_Event" FromRole="Reward" ToRole="Event" />
-    <NavigationProperty Name="List" Relationship="Self.FK_Reward_List" FromRole="Reward" ToRole="List" />
+    <NavigationProperty Name="Statement" Relationship="Self.FK_Reward_List" FromRole="Reward" ToRole="Statement" />
+  </EntityType>
+  <EntityType Name="Statement">
+    <Key>
+      <PropertyRef Name="statement_id" />
+    </Key>
+    <Property Name="statement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="student_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Marks" Relationship="Self.FK_Mark_List" FromRole="Statement" ToRole="Mark" />
+    <NavigationProperty Name="Rewards" Relationship="Self.FK_Reward_List" FromRole="Statement" ToRole="Reward" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_List_Student" FromRole="Statement" ToRole="Student" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
       <PropertyRef Name="student_id" />
     </Key>
-    <Property Name="student_id" Type="Int32" Nullable="false" />
+    <Property Name="student_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Lists" Relationship="Self.FK_List_Student" FromRole="Student" ToRole="List" />
+    <NavigationProperty Name="Statements" Relationship="Self.FK_List_Student" FromRole="Student" ToRole="Statement" />
   </EntityType>
   <EntityType Name="Subject">
     <Key>
       <PropertyRef Name="subject_id" />
     </Key>
-    <Property Name="subject_id" Type="Int32" Nullable="false" />
+    <Property Name="subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Marks" Relationship="Self.FK_Mark_Subject" FromRole="Subject" ToRole="Mark" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <Association Name="FK_Reward_Event">
     <End Role="Event" Type="Self.Event" Multiplicity="1" />
@@ -81,38 +94,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_List_Student">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
-    <End Role="List" Type="Self.List" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="student_id" />
-      </Principal>
-      <Dependent Role="List">
-        <PropertyRef Name="student_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Mark_List">
-    <End Role="List" Type="Self.List" Multiplicity="1" />
+    <End Role="Statement" Type="Self.Statement" Multiplicity="1" />
     <End Role="Mark" Type="Self.Mark" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="List">
-        <PropertyRef Name="list_id" />
+      <Principal Role="Statement">
+        <PropertyRef Name="statement_id" />
       </Principal>
       <Dependent Role="Mark">
-        <PropertyRef Name="list_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reward_List">
-    <End Role="List" Type="Self.List" Multiplicity="0..1" />
-    <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="List">
-        <PropertyRef Name="list_id" />
-      </Principal>
-      <Dependent Role="Reward">
         <PropertyRef Name="list_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -129,46 +118,57 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Reward_List">
+    <End Role="Statement" Type="Self.Statement" Multiplicity="0..1" />
+    <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statement">
+        <PropertyRef Name="statement_id" />
+      </Principal>
+      <Dependent Role="Reward">
+        <PropertyRef Name="list_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_List_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Statement" Type="Self.Statement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="student_id" />
+      </Principal>
+      <Dependent Role="Statement">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="diplomaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Events" EntityType="Self.Event" />
-    <EntitySet Name="Lists" EntityType="Self.List" />
     <EntitySet Name="Marks" EntityType="Self.Mark" />
     <EntitySet Name="Rewards" EntityType="Self.Reward" />
+    <EntitySet Name="Statements" EntityType="Self.Statement" />
     <EntitySet Name="Students" EntityType="Self.Student" />
     <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <EntitySet Name="Users" EntityType="Self.User" />
     <AssociationSet Name="FK_Reward_Event" Association="Self.FK_Reward_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="Reward" EntitySet="Rewards" />
     </AssociationSet>
-    <AssociationSet Name="FK_List_Student" Association="Self.FK_List_Student">
-      <End Role="Student" EntitySet="Students" />
-      <End Role="List" EntitySet="Lists" />
-    </AssociationSet>
     <AssociationSet Name="FK_Mark_List" Association="Self.FK_Mark_List">
-      <End Role="List" EntitySet="Lists" />
+      <End Role="Statement" EntitySet="Statements" />
       <End Role="Mark" EntitySet="Marks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reward_List" Association="Self.FK_Reward_List">
-      <End Role="List" EntitySet="Lists" />
-      <End Role="Reward" EntitySet="Rewards" />
     </AssociationSet>
     <AssociationSet Name="FK_Mark_Subject" Association="Self.FK_Mark_Subject">
       <End Role="Subject" EntitySet="Subjects" />
       <End Role="Mark" EntitySet="Marks" />
     </AssociationSet>
-    <EntitySet Name="Users" EntityType="diplomaModel.User" />
+    <AssociationSet Name="FK_Reward_List" Association="Self.FK_Reward_List">
+      <End Role="Statement" EntitySet="Statements" />
+      <End Role="Reward" EntitySet="Rewards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_List_Student" Association="Self.FK_List_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Statement" EntitySet="Statements" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="e_mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
 </Schema>

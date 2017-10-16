@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2e6747e80d374507a1bcb28b80e4bb52" Name="Diagram1">
-        <EntityTypeShape EntityType="diplomaModel.Event" Width="1.5" PointX="6.375" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="diplomaModel.List" Width="1.5" PointX="2.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="diplomaModel.Mark" Width="1.5" PointX="2.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="diplomaModel.Reward" Width="1.5" PointX="4.375" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="diplomaModel.Student" Width="1.5" PointX="0.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="diplomaModel.Subject" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
+      <Diagram DiagramId="952033761aba4738b362427c12be6f80" Name="Diagram1">
+        <EntityTypeShape EntityType="diplomaModel.Event" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="diplomaModel.Mark" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diplomaModel.Reward" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="diplomaModel.Statement" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diplomaModel.Student" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diplomaModel.Subject" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="diplomaModel.User" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="diplomaModel.FK_Reward_Event" ManuallyRouted="false" />
-        <AssociationConnector Association="diplomaModel.FK_List_Student" ManuallyRouted="false" />
         <AssociationConnector Association="diplomaModel.FK_Mark_List" ManuallyRouted="false" />
-        <AssociationConnector Association="diplomaModel.FK_Reward_List" ManuallyRouted="false" />
         <AssociationConnector Association="diplomaModel.FK_Mark_Subject" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="diplomaModel.User" Width="1.5" PointX="8.125" PointY="0.625" />
+        <AssociationConnector Association="diplomaModel.FK_Reward_List" ManuallyRouted="false" />
+        <AssociationConnector Association="diplomaModel.FK_List_Student" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

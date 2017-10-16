@@ -4,15 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EditEvent</title>
-    @Styles.Render("~/Content/css")
-</head>
-<body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -104,7 +95,5 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "List")
     </div>
-</body>
-</html>

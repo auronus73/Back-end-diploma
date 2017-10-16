@@ -3,11 +3,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model WebApplication2.Student
-<h2>Студент № @Model.student_id</h2>
 
-@using (Html.BeginForm("EditStudent", "Students", FormMethod.Post))
+@if (string.IsNullOrEmpty(ViewBag.ErrorMessage))
 {
-    @Html.HiddenFor(m => m.student_id)
+    <span>@ViewBag.ErrorMessage</span>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<h2>Студент № </h2>
+@Html.HiddenFor(m => m.student_id)
     <div class="container">
         <div class="row">
             <div class="col-md-2">@Html.LabelFor(m => m.surname, "Фамилия студента")</div>
@@ -27,4 +32,5 @@
             </div>
         </div>
     </div>
+
 }

@@ -7,48 +7,25 @@ using System.Web.Mvc;
 
 namespace WebApplication2.Controllers
 {
-    public class ListsController : Controller
+    public class StatementsController : Controller
     {
         // GET: Lists
-        public ActionResult Lists()
+        public ActionResult List(int pageNumber)
         {
+            int pageSize = 10;
             var asd = new diplomaEntities();
-            var qwe = asd.Lists;
+            var qwe = asd.Statements.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var zxc = asd.Statements.Count();
             //var temp = (from c in asd.Students select c.student_id).Max();
             //id = Convert.ToInt32(temp);
-            return View(qwe);
-        }
-
-        // GET: Lists/Create
-        public ActionResult CreateList()
-        {
-            return View();
-        }
-
-        // POST: Lists/Create
-        [HttpPost]
-        public ActionResult CreateList(List list)
-        {
-            var asd = new diplomaEntities();
-            try
-            {
-                // TODO: Add insert logic here
-                asd.Lists.Add(list);
-                // сохраняем в бд все изменения
-                asd.SaveChanges();
-                return RedirectToAction("Lists/Lists");
-            }
-            catch
-            {
-                return View(asd.Lists);
-            }
+            return View(new ListModel<Statement> { Data = qwe, TotalCount = zxc, PageNumber = pageNumber });
         }
 
         // GET: Lists/Edit/5
-        public ActionResult EditList(int id)
+        public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
-            List list = asd.Lists.Find(id);
+            Statement list = asd.Statements.Find(id);
             if (list != null)
             {
                 return View(list);
@@ -58,7 +35,7 @@ namespace WebApplication2.Controllers
 
         // POST: Lists/Edit/5
         [HttpPost]
-        public ActionResult EditList(List list)
+        public ActionResult Edit(Statement list)
         {
             try
             {
@@ -66,7 +43,7 @@ namespace WebApplication2.Controllers
                 asd.Entry(list).State = EntityState.Modified;
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("Lists/Lists");
+                return RedirectToAction("List");
             }
             catch
             {
@@ -75,25 +52,34 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Lists/Delete/5
-        public ActionResult DeleteList(int id)
+        public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Lists/Delete/5
         [HttpPost]
-        public ActionResult DeleteList(int id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Lists");
+                return RedirectToAction("List");
             }
             catch
             {
                 return View();
             }
         }
+    }
+
+    public class ListModel<T>
+    {
+        public List<T> Data { get; set; }
+
+        public int PageNumber { get; set; }
+
+        public int TotalCount { get; set; }
     }
 }

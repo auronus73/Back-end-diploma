@@ -10,7 +10,7 @@ namespace WebApplication2.Controllers
     public class MarksController : Controller
     {
         // GET: Marks
-        public ActionResult Marks()
+        public ActionResult List()
         {
             var asd = new diplomaEntities();
             var qwe = asd.Marks;
@@ -20,33 +20,8 @@ namespace WebApplication2.Controllers
         }
 
 
-        // GET: Marks/Create
-        public ActionResult CreateMark()
-        {
-            return View();
-        }
-
-        // POST: Marks/Create
-        [HttpPost]
-        public ActionResult CreateMark(Mark mark)
-        {
-            var asd = new diplomaEntities();
-            try
-            {
-                // TODO: Add insert logic here
-                asd.Marks.Add(mark);
-                // сохраняем в бд все изменения
-                asd.SaveChanges();
-                return RedirectToAction("Marks/Marks");
-            }
-            catch
-            {
-                return View(asd.Marks);
-            }
-        }
-
         // GET: Marks/Edit/5
-        public ActionResult EditMark(int id)
+        public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
             Mark mark = asd.Marks.Find(id);
@@ -59,7 +34,7 @@ namespace WebApplication2.Controllers
 
         // POST: Marks/Edit/5
         [HttpPost]
-        public ActionResult EditMark(Mark mark)
+        public ActionResult Edit(Mark mark)
         {
             try
             {
@@ -67,7 +42,7 @@ namespace WebApplication2.Controllers
                 asd.Entry(mark).State = EntityState.Modified;
                 // сохраняем в бд все изменения
                 asd.SaveChanges();
-                return RedirectToAction("Marks");
+                return RedirectToAction("List");
             }
             catch
             {
@@ -76,20 +51,20 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Marks/Delete/5
-        public ActionResult DeleteMark(int id)
+        public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Marks/Delete/5
         [HttpPost]
-        public ActionResult DeleteMark(int id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Marks");
+                return RedirectToAction("List");
             }
             catch
             {

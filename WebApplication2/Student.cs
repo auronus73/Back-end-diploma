@@ -17,7 +17,7 @@ namespace WebApplication2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
-            this.Lists = new HashSet<List>();
+            this.Statements = new HashSet<Statement>();
         }
     
         public int student_id { get; set; }
@@ -27,6 +27,6 @@ namespace WebApplication2
         public string group { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<List> Lists { get; set; }
+        public virtual ICollection<Statement> Statements { get; set; }
     }
 }
