@@ -1,5 +1,4 @@
-﻿@model IEnumerable<WebApplication2.Student>
-
+﻿@model WebApplication2.Models.IndexView
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,14 +6,16 @@
     <h3>Список студентов</h3>
     <a style="text-align:right", href="Edit/">Добавить студента</a>   
     <ul class="pagination">
-        @*@foreach()*@
-        <li><a href="?pageNumber=1">1</a></li>
-        <li><a href="#">3</a></li>
+        @for (int n = 1; n < Model.PageInfo.TotalPages+1; n++)
+        {
+        <li><a href="?pageNumber=@n">@n</a></li>
+        }
+        @*<li><a href="?pageNumber=2">2</a></li>
         <li><a href="#">4</a></li>
         <li><a href="#">5</a></li>
         <li><a href="#">6</a></li>
         <li><a href="#">7</a></li>
-        <li><a href="#">»</a></li>
+        <li><a href="#">»</a></li>*@
     </ul>
     <p></p>
     <table class="table table-striped">
@@ -27,7 +28,7 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Students)
         {
             <tr>
                 <td>

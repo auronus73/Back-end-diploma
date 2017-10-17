@@ -16,9 +16,7 @@ namespace WebApplication2.Controllers
             var asd = new diplomaEntities();
             var qwe = asd.Statements.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
             var zxc = asd.Statements.Count();
-            //var temp = (from c in asd.Students select c.student_id).Max();
-            //id = Convert.ToInt32(temp);
-            return View(new ListModel<Statement> { Data = qwe, TotalCount = zxc, PageNumber = pageNumber });
+            return View();
         }
 
         // GET: Lists/Edit/5
@@ -74,12 +72,5 @@ namespace WebApplication2.Controllers
         }
     }
 
-    public class ListModel<T>
-    {
-        public List<T> Data { get; set; }
-
-        public int PageNumber { get; set; }
-
-        public int TotalCount { get; set; }
-    }
+    
 }
