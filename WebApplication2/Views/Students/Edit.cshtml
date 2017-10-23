@@ -8,12 +8,12 @@
 {
     <span>@ViewBag.ErrorMessage</span>
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Students"))
 {
     
     @Html.AntiForgeryToken()
 <h2>Студент № </h2>
-@*@Html.HiddenFor(m => m.student_id)*@
+    @Html.HiddenFor(m => m.student_id)
     <div class="container">
         <div class="row">
             <div class="col-md-2">@Html.LabelFor(m => m.surname, "Фамилия студента")</div>

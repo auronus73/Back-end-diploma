@@ -23,6 +23,15 @@ textarea {
     max-width: 280px;
 }
 
+.pager li > a {
+    display: initial;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 20px;
+}
 li {
     float: left; /*Размещаем список горизонтально для реализации меню*/
     margin-right: 5px; /*Добавляем отступ у пунктов меню*/

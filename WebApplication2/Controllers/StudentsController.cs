@@ -12,18 +12,21 @@ namespace WebApplication2.Controllers
     {
         public int id = 0;
         // GET: Students
-        public ActionResult List(int pageNumber)
+        public ActionResult List(PageModel pageModel)
         {
-            int pageSize = 10;
-            var asd = new diplomaEntities();
-            var qwe = asd.Students.OrderBy(m => m.student_id).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-            var zxc = asd.Students.Count();
-            IEnumerable<Student> studentsPerPages = asd.Students.OrderBy(m => m.student_id).Skip((pageNumber - 1) * pageSize).Take(pageSize);
-            PageInfo pageInfo = new PageInfo { PageNumber = pageNumber, PageSize = pageSize, TotalItems = zxc };
-            IndexView ivm = new IndexView { PageInfo = pageInfo, Students = studentsPerPages };
-
-            return View(ivm);
-            //new ListModel<Student> { Data = qwe, PageNumber = pageNumber, TotalCount = zxc }
+            var context = new diplomaEntities();
+            double n = 10;
+            int totalPages = Convert.ToInt32(Math.Ceiling((decimal)(context.Students.Count() / n)));
+            int pageNumber = Math.Min(Math.Max(pageModel != null ? pageModel.PageNumber : 1,1), totalPages);
+            int pageSize = Math.Min(Math.Max(pageModel.PageSize, 10), 100);
+            var model = new DataModel<Student>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                Data = context.Students.OrderBy(m => m.student_id).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
+                TotalItems = context.Students.Count()
+            };
+            return View(model);
         }
 
         // GET: Students/Edit/5
@@ -31,8 +34,15 @@ namespace WebApplication2.Controllers
         public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
-            Student student = asd.Students.Find(id) ?? new Student();
+            Student student = asd.Students.Find(id);
+            if (student == null) throw new Exception("Студент не найден");
             return View(student);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View("Edit");
         }
 
         // POST: Students/Edit/5
@@ -62,37 +72,22 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Students/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Students/Delete/5
-        [HttpPost]
-        public ActionResult Delete(Student student)
         {
             try
             {
-                // TODO: Add delete logic here
                 var asd = new diplomaEntities();
-                asd.Entry(student).State = EntityState.Modified;
-                // сохраняем в бд все изменения
+                Student student = asd.Students.Find(id);
+                asd.Entry(student).State = EntityState.Deleted;
                 asd.SaveChanges();
                 return RedirectToAction("List");
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
-        }
-
-        public class ListModel<T>
-        {
-            public List<T> Data { get; set; }
-
-            public int PageNumber { get; set; }
-
-            public int TotalCount { get; set; }
         }
     }
 }

@@ -1,21 +1,43 @@
-﻿@model WebApplication2.Models.IndexView
+﻿@model WebApplication2.Models.DataModel<Student>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
     <h3>Список студентов</h3>
-    <a style="text-align:right", href="Edit/">Добавить студента</a>   
+    <a style="text-align:right", href="@Url.Action("Create")">Добавить студента</a>   
     <ul class="pagination">
-        @for (int n = 1; n < Model.PageInfo.TotalPages+1; n++)
+        <li><a href="?pageNumber=1">1</a></li>
+
+        @if ((Model.TotalPages) > 6 && (Model.PageNumber < 5))
         {
-        <li><a href="?pageNumber=@n">@n</a></li>
+            for (int n = 2; n < 6; n++)
+            {
+            <li><a href="?pageNumber=@n">@n</a></li>
+            }
+            <li><span>...</span></li>
+            <li><a href="?pageNumber=@Model.TotalPages">@Model.TotalPages</a></li>
         }
-        @*<li><a href="?pageNumber=2">2</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">7</a></li>
-        <li><a href="#">»</a></li>*@
+        else
+        {
+        if ((Model.TotalPages) > 6 && (Model.PageNumber < Model.TotalPages - 3) && (Model.PageNumber >= 5))
+        {
+            <li><span>...</span></li>
+            for (int n = Model.PageNumber - 2; n < Model.PageNumber + 3; n++)
+            {
+                <li><a href="?pageNumber=@n">@n</a></li>
+            }
+            <li><span>...</span></li>
+        }
+        else
+        {
+            <li><span>...</span></li>
+            for (int n = Model.TotalPages - 4; n < Model.TotalPages; n++)
+            {
+                <li><a href="?pageNumber=@n">@n</a></li>
+            }
+        }
+        <li><a href="?pageNumber=@Model.TotalPages">@Model.TotalPages</a></li>
+        }
     </ul>
     <p></p>
     <table class="table table-striped">
@@ -25,10 +47,9 @@
             <th>Отчество</th>
             <th>Группа</th>
             <th>Действия</th>
-            <th></th>
         </tr>
 
-        @foreach (var item in Model.Students)
+        @foreach (var item in Model.Data)
         {
             <tr>
                 <td>
@@ -44,11 +65,15 @@
                     @Html.DisplayFor(modelItem => item.group)
                 </td>
                 <td>
-                    <p>
-                        <a style="margin-bottom: 0px; background: transparent",  href="Edit/@item.student_id">Изменить</a>
-                        <a style="margin-bottom: 0px; margin-top: 0px; background: transparent",  href="Delete/@item.student_id"></a>
-                    </p>
+                    <ul style="margin:0px" , class="pager">
+                        <li>
+                        <a style="background: transparent",  href="@Url.Action("Edit",  new { id = item.student_id })">Изменить</a>
+                        <a style="background: transparent",  href="@Url.Action("Delete", new { id = item.student_id })">Удалить</a>
+                    </li>
+                    </ul>
                 </td>
             </tr>
         }
     </table>
+<p> Записи с @((Model.PageNumber-1)*10) до @((Model.PageNumber)*10)</p>
+<p> Всего записей @Model.TotalItems</p>
