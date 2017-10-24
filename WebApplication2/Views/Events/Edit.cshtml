@@ -1,99 +1,49 @@
-﻿@model WebApplication2.Event
-
+﻿
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model WebApplication2.Event
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Event</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.event_id)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.country, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.country, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.street, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.street, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.street, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.number_of_house, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.number_of_house, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.number_of_house, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.level, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.level, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.level, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.value, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.value, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.value, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.source, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.source, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.source, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+@if (string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <span>@ViewBag.ErrorMessage</span>
+}
+@using (Html.BeginForm("Edit", "Events"))
+{
+
+    @Html.AntiForgeryToken()
+    <h2>Мероприятие № </h2>
+    @Html.HiddenFor(m => m.event_id)
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.title, "Наименование")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.title)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.country, "Страна")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.country)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.city, "Город")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.city)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.street, "Улица")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.street)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.number_of_house, "№ дома")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.number_of_house)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.level, "Уровень мероприятия")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.level)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">@Html.LabelFor(m => m.date, "Дата")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.date.Date)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.value, "Ценность")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.value)</div>
+            <div class="col-md-2">@Html.LabelFor(m => m.source, "Источник")</div>
+            <div class="col-md-4">@Html.EditorFor(m => m.source)</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <input class="btn btn-primary" type="submit" value="Отправить" />
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "List")
-    </div>
+
+}

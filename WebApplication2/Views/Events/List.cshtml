@@ -1,38 +1,66 @@
-﻿@model IEnumerable<WebApplication2.Event>
+﻿@model WebApplication2.Models.DataModel<Event>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
     <h3>Список студентов</h3>
-    <a style="text-align:right" , href="Create/">Добавить студента</a>
-    <ul class="pagination">
-        @*@foreach()*@
-        <li><a href="?pageNumber=1">1</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">7</a></li>
-        <li><a href="#">»</a></li>
-    </ul>
-    <p></p>
+    <a style="text-align:right" , href="@Url.Action("Create")">Добавить мероприятие</a>
+<ul class="pagination">
+    <li><a href="?pageNumber=1">1</a></li>
 
+    @if ((Model.TotalPages) > 6 && (Model.PageNumber < 5))
+    {
+        for (int n = 2; n < 6; n++)
+        {
+            <li><a href="?pageNumber=@n">@n</a></li>
+        }
+        <li><span>...</span></li>
+            <li><a href="?pageNumber=@Model.TotalPages">@Model.TotalPages</a></li>
+    }
+    else
+    {
+        if (Model.TotalPages < 6)
+        {
+            for (int n = 2; n < Model.TotalPages; n++)
+            {
+                <li><a href="?pageNumber=@n">@n</a></li>
+            }
+        }
+        else
+        {
+            if ((Model.TotalPages) > 6 && (Model.PageNumber < Model.TotalPages - 3) && (Model.PageNumber >= 5))
+            {
+            <li><span>...</span></li>
+                for (int n = Model.PageNumber - 2; n < Model.PageNumber + 3; n++)
+                {
+                <li><a href="?pageNumber=@n">@n</a></li>
+                }
+            <li><span>...</span></li>
+            }
+            else
+            {
+            <li><span>...</span></li>
+                for (int n = Model.TotalPages - 4; n < Model.TotalPages; n++)
+                {
+                <li><a href="?pageNumber=@n">@n</a></li>
+                }
+            }
+        }
+        <li><a href="?pageNumber=@Model.TotalPages">@Model.TotalPages</a></li>
+    }
+</ul>
+<p></p>
     <table class="table table-striped">
         <tr>
             <th>Наименование</th>
             <th>Страна</th>
             <th>Город</th>
-            <th>Улица</th>
-            <th>№ дома</th>
             <th>Уровень</th>
             <th>Дата</th>
-            <th>Ценность</th>
-            <th>Источник</th>
             <th>Действия</th>
         </tr>
-
-        @foreach (var item in Model)
+        @foreach (var item in Model.Data)
         {
             <tr>
                 <td>
@@ -45,30 +73,22 @@
                     @Html.DisplayFor(modelItem => item.city)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.street)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.number_of_house)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.level)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.source)
-                </td>
-                <td>
-                    <p>
-                        <a style="margin-bottom: 0px; background: transparent" , href="Edit/@item.event_id">Изменить</a>
-                        <a style="margin-bottom: 0px; margin-top: 0px; background: transparent" , href="Delete/@item.event_id"></a>
-                    </p>
+                    <ul style="margin:0px" , class="pager">
+                        <li>
+                            <a href="@Url.Action("Edit", new { id = item.event_id })">Изменить</a>
+                            @Html.ActionLink("Удалить", "Delete", new { id = item.event_id }, new { onclick = "return confirm('Вы уверены?')", @class = "button" })
+                            <a href="@Url.Action("Details", new { id = item.event_id })">Детали</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         }
-
     </table>
+<p> Записи с @((Model.PageNumber - 1) * 10) до @((Model.PageNumber) * 10)</p>
+<p> Всего записей @Model.TotalItems</p>
