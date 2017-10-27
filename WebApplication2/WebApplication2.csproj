@@ -342,6 +342,7 @@
     <Content Include="Views\Statements\List.cshtml" />
     <Content Include="Views\Rewards\List.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Shared\Pagining.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

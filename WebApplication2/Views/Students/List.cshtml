@@ -5,51 +5,8 @@
 
     <h3>Список студентов</h3>
     <a style="text-align:right", href="@Url.Action("Create")">Добавить студента</a>   
-    <ul class="pagination">
-        <li><a href="?pageNumber=1">1</a></li>
-
-        @if ((Model.TotalPages) > 6 && (Model.PageNumber < 5))
-        {
-            for (int n = 2; n < 6; n++)
-            {
-            <li><a href="?pageNumber=@n">@n</a></li>
-            }
-            <li><span>...</span></li>
-            <li><a href="?pageNumber=@Model.TotalPages">@Model.TotalPages</a></li>
-        }
-        else
-        {
-            if (Model.TotalPages < 6)
-            {
-                for (int n = 2; n < Model.TotalPages; n++)
-                {
-                    <li><a href="?pageNumber=@n">@n</a></li>
-                }
-            }
-            else
-            {
-                if ((Model.TotalPages) > 6 && (Model.PageNumber < Model.TotalPages - 3) && (Model.PageNumber >= 5))
-                {
-            <li><span>...</span></li>
-                    for (int n = Model.PageNumber - 2; n < Model.PageNumber + 3; n++)
-                    {
-                <li><a href="?pageNumber=@n">@n</a></li>
-                    }
-            <li><span>...</span></li>
-                }
-                else
-                {
-            <li><span>...</span></li>
-                    for (int n = Model.TotalPages - 4; n < Model.TotalPages; n++)
-                    {
-                <li><a href="?pageNumber=@n">@n</a></li>
-                    }
-                }
-            }
-        <li><a href="?pageNumber=@Model.TotalPages">@Model.TotalPages</a></li>
-        }
-    </ul>
-    <p></p>
+@Html.Partial("Pagining", Model)
+ <p></p>
     <table class="table table-striped">
         <tr>
             <th>Фамилия</th>
