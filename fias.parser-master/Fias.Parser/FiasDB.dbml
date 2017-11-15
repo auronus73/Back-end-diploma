@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FIAS" Class="FiasDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=AURONUS;Initial Catalog=FIAS;Integrated Security=True" SettingsObjectName="Fias.Parser.Properties.Settings" SettingsPropertyName="FIASConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.House" Member="Houses">
+    <Type Name="House">
+      <Column Name="HOUSENUM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BUILDNUM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STRUCNUM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STRSTATUS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HOUSEID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HOUSEGUID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AOGUID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Object" Member="Objects">
+    <Type Name="Object">
+      <Column Name="AOGUID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FORMALNAME" Type="System.String" DbType="NVarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="REGIONCODE" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CITYCODE" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STREETCODE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OFFNAME" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="SHORTNAME" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AOLEVEL" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PARENTGUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AOID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using WebApplication2.Models;
+using WebApplication2.Views.Shared;
+
 using System.Web.Mvc;
 
 namespace WebApplication2.Controllers
@@ -30,11 +32,13 @@ namespace WebApplication2.Controllers
 
 
         // GET: Events/Edit/5
+        [Referrer]
         public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
             Event even = asd.Events.Find(id);
             if (even == null) throw new Exception("Мероприятие не найдено");
+            else TempData["referrer"] = ControllerContext.RouteData.Values["referrer"];
             return View(even);
         }
 
@@ -71,6 +75,10 @@ namespace WebApplication2.Controllers
                     asd.Entry(even).State = EntityState.Added;
                 }
                 asd.SaveChanges();
+                if (TempData["referrer"] != null)
+                {
+                    return Redirect(TempData["referrer"].ToString());
+                }
                 return RedirectToAction("List");
             }
             catch (Exception ex)
@@ -81,6 +89,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Events/Delete/5
+        [Referrer]
         public ActionResult Delete(int id)
         {
             try
@@ -89,6 +98,10 @@ namespace WebApplication2.Controllers
                 Event even = asd.Events.Find(id);
                 asd.Entry(even).State = EntityState.Deleted;
                 asd.SaveChanges();
+                if (TempData["referrer"] != null)
+                {
+                    return Redirect(TempData["referrer"].ToString());
+                }
                 return RedirectToAction("List");
             }
             catch (Exception ex)

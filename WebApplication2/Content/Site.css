@@ -108,8 +108,8 @@ li > ul {
 
 li:hover > ul {
     display: block;
-    margin-top: 15px;
-    width: 130px; /*Задаем ширину выпадающего меню*/
+    margin-top: 25px;
+    width: 120px; /*Задаем ширину выпадающего меню*/
 }
 
     li:hover > ul > li {

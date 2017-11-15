@@ -20,12 +20,15 @@ namespace WebApplication2
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                             "~/Scripts/moment.js",
+                             "~/Scripts/bootstrap*",
+                      "~/Scripts/respond.js"
+               ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap-datetimepicker.css",
+                      "~/Content/bootstrap-theme.css"));
         }
     }
 }

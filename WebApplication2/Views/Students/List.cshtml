@@ -2,7 +2,6 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
     <h3>Список студентов</h3>
     <a style="text-align:right", href="@Url.Action("Create")">Добавить студента</a>   
 @Html.Partial("Pagining", Model)
@@ -42,5 +41,7 @@
             </tr>
         }
     </table>
+@Html.Partial("Pagining", Model)
+
 <p> Записи с @((Model.PageNumber-1)*10) до @((Model.PageNumber)*10)</p>
 <p> Всего записей @Model.TotalItems</p>

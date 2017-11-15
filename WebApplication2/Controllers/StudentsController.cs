@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Views.Shared;
 using WebApplication2.Models;
 using System.Data.Entity;
 
@@ -30,12 +31,13 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Students/Edit/5
-        [HttpGet]
+        [Referrer]
         public ActionResult Edit(int id)
         {
             var asd = new diplomaEntities();
             Student student = asd.Students.Find(id);
             if (student == null) throw new Exception("Студент не найден");
+            else TempData["referrer"] = ControllerContext.RouteData.Values["referrer"];
             return View(student);
         }
 
@@ -62,6 +64,10 @@ namespace WebApplication2.Controllers
                     asd.Entry(student).State = EntityState.Added;
                 }
                 asd.SaveChanges();
+                if (TempData["referrer"] != null)
+                {
+                    return Redirect(TempData["referrer"].ToString()); 
+                }
                 return RedirectToAction("List");
             }
             catch (Exception ex)
@@ -72,15 +78,20 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Students/Delete/5
-        [HttpGet]
+        [Referrer]
         public ActionResult Delete(int id)
         {
             try
             {
+                TempData["referrer"] = ControllerContext.RouteData.Values["referrer"];
                 var asd = new diplomaEntities();
                 Student student = asd.Students.Find(id);
                 asd.Entry(student).State = EntityState.Deleted;
                 asd.SaveChanges();
+                if (TempData["referrer"] != null)
+                {
+                    return Redirect(TempData["referrer"].ToString());
+                }
                 return RedirectToAction("List");
             }
             catch (Exception ex)
